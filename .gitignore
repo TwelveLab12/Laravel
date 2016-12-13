@@ -1,0 +1,5 @@
+.DS_STORE
+.vagrant
+scotch-box
+Vagrantfile
+README.md
