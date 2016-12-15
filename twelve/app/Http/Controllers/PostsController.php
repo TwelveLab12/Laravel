@@ -22,9 +22,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        //
         
-//        dd(Session::all());
         $posts = Post::get();
         return view('posts.index', compact('posts'));
         
@@ -116,8 +114,10 @@ class PostsController extends Controller
         
         $post = Post::findOrFail($id);
         $post->update($request->all());
-        return redirect(route('article.edit', $id));
-        
+
+        // with('success' , 'L\'opération s\'est déroulée avec succès') est equivalent à
+        // Session::flash('success' , 'L\'opération s\'est déroulée avec succès');
+        return redirect(route('article.edit', $id))->with('success' , 'L\'opération s\'est déroulée avec succès');
         
         //  Equivalent de $this->validate($request, Post::$rules);
         
