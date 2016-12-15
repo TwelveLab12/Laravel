@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\EditPostRequest;
 //use App\Http\Request;
 use Illuminate\Support\Facades\App;
 use Validator;
@@ -104,7 +105,7 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EditPostRequest $request, $id)
     {
         
         //  Post::$rules => PostModel : public static $rules
@@ -114,14 +115,11 @@ class PostsController extends Controller
         return redirect(route('article.edit', $id));
         
         
-        //  Equivalent de $this->validate($request, $rules);
+        //  Equivalent de $this->validate($request, Post::$rules);
         
         /*
          
-        $validators  = Validator::make($request->all(), [ 
-                'title' => 'required|min:5',
-                'content' => 'required|min:10'
-        ]);
+        $validators  = Validator::make($request->all(), Post::$rules);
         
         if($validators->fails()){
             return redirect(route('article.edit', $id))->withErrors($validators->errors());
