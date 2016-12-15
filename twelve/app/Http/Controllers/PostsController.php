@@ -59,7 +59,7 @@ class PostsController extends Controller
     {
         //
         $post = Post::Create($request->all());
-        return redirect(route('article.edit', $post));
+        return redirect(route('article.edit', $post))->with('success' , 'L\'article a bien été sauvegardé');
 
     }
 
@@ -83,8 +83,6 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        //  with('category')->
-        
         
         $post = POST::findOrFail($id);
         $categories = Category::pluck('name', 'id');
@@ -117,12 +115,13 @@ class PostsController extends Controller
 
         // with('success' , 'L\'opération s\'est déroulée avec succès') est equivalent à
         // Session::flash('success' , 'L\'opération s\'est déroulée avec succès');
-        return redirect(route('article.edit', $id))->with('success' , 'L\'opération s\'est déroulée avec succès');
+        return redirect(route('article.edit', $id))->with('success' , 'L\'article a bien été sauvegardé');
         
-        //  Equivalent de $this->validate($request, Post::$rules);
         
         /*
          
+        //  Equivalent de $this->validate($request, Post::$rules);
+        
         $validators  = Validator::make($request->all(), Post::$rules);
         
         if($validators->fails()){
