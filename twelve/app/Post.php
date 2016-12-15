@@ -9,15 +9,15 @@ class Post extends Model
 {
     // Définit les champs que l'on peut modifier manuellement
     protected $fillable = ['title', 'slug', 'content', 'online', 'category_id', 'tags_list'];
-    
-//    Les "rules" sont maintenant gérer dans le dossier Request.
-//    ici => Dans Edit Post Request 
-    
-//    public static $rules = [ 
-//            'title' => 'required|min:5',
-//            'content' => 'required|min:10'
-//    ];
-    
+
+    //    Les "rules" sont maintenant gérer dans le dossier Request.
+    //    ici => Dans Edit Post Request 
+
+    //    public static $rules = [ 
+    //            'title' => 'required|min:5',
+    //            'content' => 'required|min:10'
+    //    ];
+     
     
     /*Relation*/
     public function category() {

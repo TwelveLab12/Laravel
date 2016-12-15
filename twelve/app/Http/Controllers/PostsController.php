@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\EditPostRequest;
 //use App\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
 use Validator;
 
 use App\Post;
@@ -22,6 +23,8 @@ class PostsController extends Controller
     public function index()
     {
         //
+        
+//        dd(Session::all());
         $posts = Post::get();
         return view('posts.index', compact('posts'));
         
@@ -108,11 +111,11 @@ class PostsController extends Controller
     public function update(EditPostRequest $request, $id)
     {
         
-        dd(Post::$rules); 
         //  Post::$rules => PostModel : public static $rules
-        $this->validate($request, Post::$rules);
+        //  $this->validate($request, $request->rules);
         
         $post = Post::findOrFail($id);
+        $post->update($request->all());
         return redirect(route('article.edit', $id));
         
         

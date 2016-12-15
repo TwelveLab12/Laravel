@@ -84,6 +84,8 @@ return [
     'uploaded'             => 'The :attribute failed to upload.',
     'url'                  => 'The :attribute format is invalid.',
 
+    'name_of_the_rule' => 'message si la règle n\'est pas respectée',
+    
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

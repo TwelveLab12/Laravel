@@ -24,9 +24,15 @@ class EditPostRequest extends FormRequest
      */
     public function rules()
     {
+        
         return [
-            'title' => 'required|min:5|aaaa:3,test', 
+            'title' => 'required|min:3',
+            // Exemple de règle de validation perso
+            // => ValidatorServiceProvider
+            // 'title' => 'nameOfTheRule:test', 
             'content' => 'required|min:10'
         ];
     }
+    
+    
 }
