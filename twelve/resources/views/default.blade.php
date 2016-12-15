@@ -52,11 +52,20 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
+              
             <!--<li class="active"><a href="{{ route('home') }}">Home</a></li>-->
-            <li><a href="{{ route('article.index') }}"> Articles </a></li>
-            <li><a href="{{ route('categorie.index') }}"> Categories </a></li>
-            <li><a href="{{ route('tag.index') }}"> Tags </a></li>
-            <li class=""><a href="{{ route('about') }}"> A propos </a></li>
+            <!--{ { Route::getCurrentRoute()}}-->
+            <!--{ { dd(Route::current()->getName())}}-->
+            
+            @inject('menu', 'App\Helpers\MenuService')
+            <?php 
+                $menu->add('Articles', 'article.index');
+                $menu->add('Categories', 'categorie.index');
+                $menu->add('Tags', 'tag.index');
+                $menu->add('A propos', 'about');
+            ?>
+              
+            {!! $menu->make(Route::current()->getName()) !!}
           </ul>
         </div><!--/.nav-collapse -->
       </div>

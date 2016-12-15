@@ -164,6 +164,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         
         App\Providers\ValidatorServiceProvider::class,
+        App\Providers\MenuServiceProvider::class,
 
         /*
          * Package Service Providers...
