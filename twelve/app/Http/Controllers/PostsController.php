@@ -108,6 +108,7 @@ class PostsController extends Controller
     public function update(EditPostRequest $request, $id)
     {
         
+        dd(Post::$rules); 
         //  Post::$rules => PostModel : public static $rules
         $this->validate($request, Post::$rules);
         
