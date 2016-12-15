@@ -107,13 +107,8 @@ class PostsController extends Controller
     public function update(Request $request, $id)
     {
         
-        
-        $rules = [ 
-                'title' => 'required|min:5',
-                'content' => 'required|min:10'
-        ];
-        
-        $this->validate($request, $rules);
+        //  Post::$rules => PostModel : public static $rules
+        $this->validate($request, Post::$rules);
         
         $post = Post::findOrFail($id);
         return redirect(route('article.edit', $id));

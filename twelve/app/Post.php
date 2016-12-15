@@ -10,6 +10,11 @@ class Post extends Model
     // Définit les champs que l'on peut modifier manuellement
     protected $fillable = ['title', 'slug', 'content', 'online', 'category_id', 'tags_list'];
     
+    
+    public static $rules = [ 
+            'title' => 'required|min:5',
+            'content' => 'required|min:10'
+    ];
     /*Relation*/
     public function category() {
         return $this->belongsTo('App\Category');
