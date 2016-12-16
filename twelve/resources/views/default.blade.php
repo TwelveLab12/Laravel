@@ -48,15 +48,18 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-            <a class="navbar-brand" href=" {{ route('home') }}"> Home </a>
+            
+            @inject('menuHome', 'App\Helpers\MenuService')
+            <?php 
+                $menuHome->setTpl('<a class="navbar-brand {{ class }}" href=" {{ route }}"> {{ name }} </a>');
+                $menuHome->add('Home', 'home');
+            ?>
+            {!! $menuHome->make(Route::current()->getName()) !!}
+
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
               
-            <!--<li class="active"><a href="{{ route('home') }}">Home</a></li>-->
-            <!--{ { Route::getCurrentRoute()}}-->
-            <!--{ { dd(Route::current()->getName())}}-->
-            
             @inject('menu', 'App\Helpers\MenuService')
             <?php 
                 $menu->add('Articles', 'article.index');

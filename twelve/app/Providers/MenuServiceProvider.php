@@ -9,7 +9,6 @@ class MenuServiceProvider extends ServiceProvider
 {
     
     // Mettre à true pour le lazy loading
-//    protected $defer = false;
     protected $defer = true;
     
     /**

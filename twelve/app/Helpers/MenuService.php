@@ -14,12 +14,21 @@ class MenuService implements MenuServiceContract{
     
     private $items = array();
     private $tpl = '<li class="{{ class }}"> <a href="{{ route }}"> {{ name }} </a><li>';
+    
+//    public function __construct() {
+//        dd(config('menu'));
+//        
+//        foreach(config('menu') as $k => $menu){
+//            
+//        }
+//    }
         
     public function make($current){
+        
         $tmp = "";
         foreach ($this->items as $item){
             $item['class'] = ($item["route"] == $current)? "active": "";
-            $tmp .= $this->tpl($item);
+            $tmp .= $this->useTpl($item);
         } 
         return $tmp;
     }
@@ -31,7 +40,7 @@ class MenuService implements MenuServiceContract{
         );
     }
     
-    public function tpl(Array $items){
+    public function useTpl(Array $items){
         
         $subject = $this->tpl;
         $pattern = '/(\{{2})([a-z\s]+)(\}{2})/';
@@ -40,11 +49,19 @@ class MenuService implements MenuServiceContract{
         foreach($matches[2] as $k => $vars){
             $flag = trim($vars);
             $toReplace  = $matches[0][$k];
+            
+            if($flag == 'route'){
+                $items[$flag] = route($items[$flag]);
+            } 
             $subject = str_replace($toReplace, $items[$flag], $subject);
         }    
         
         return $subject;
         
+    }
+    
+    public function setTpl($tpl){
+        $this->tpl = $tpl;
     }
     
 }
