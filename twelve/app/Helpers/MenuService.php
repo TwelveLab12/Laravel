@@ -13,13 +13,13 @@ use App\Helpers\Contracts\MenuServiceContract;
 class MenuService implements MenuServiceContract{
     
     private $items = array();
-    
-    public function make($current){
+    private $tpl = '<li class="{{ class }}"> <a href="{{ route }}"> {{ name }} </a><li>';
         
+    public function make($current){
         $tmp = "";
         foreach ($this->items as $item){
-            $class = ($item["route"] == $current)? "active": "";
-            $tmp .= '<li class="'.$class.'"> <a href="' . route($item['route']) . '">' . $item['name'] . '</a><li>';
+            $item['class'] = ($item["route"] == $current)? "active": "";
+            $tmp .= $this->tpl($item);
         } 
         return $tmp;
     }
@@ -29,6 +29,22 @@ class MenuService implements MenuServiceContract{
             'name' => $name,
             'route' => $route,
         );
+    }
+    
+    public function tpl(Array $items){
+        
+        $subject = $this->tpl;
+        $pattern = '/(\{{2})([a-z\s]+)(\}{2})/';
+        preg_match_all($pattern, $subject, $matches);
+            
+        foreach($matches[2] as $k => $vars){
+            $flag = trim($vars);
+            $toReplace  = $matches[0][$k];
+            $subject = str_replace($toReplace, $items[$flag], $subject);
+        }    
+        
+        return $subject;
+        
     }
     
 }

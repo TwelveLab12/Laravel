@@ -12,5 +12,6 @@ interface MenuServiceContract{
     
     public function make($current);
     public function add($name, $route);
+    public function tpl(Array $items);
     
 }
